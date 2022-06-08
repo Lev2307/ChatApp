@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <nav>
+            {% if user.is_authenticated %}
+                <h1>Hi: <a href="auth/profile/{{ user.id }}/">{{ user.username }}</a></h1>
+                <a href="auth/logout/">Log Out</a>
+            {% else %}
+                <a href="auth/register/">Create Account</a>
+                <a href="auth/login/">Log In</a>
+            {% endif %}
+        </nav>
+    </div>
+    <div class="position-absolute bottom-0 end-0">
+        {% if users.count > 0 %}
+            <h1>All Users:</h1>
+            {% for u in users %}
+                {% if user.id != None %}
+                    <div class="p-2 border mt-1">
+                        <a class="fs-3" href="auth/profile/{{ u.id }}/">{{ u.username }}</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <h3>There aren`t any users =/</h3>
+        {% endif %}
+    </div>
+{% endblock content %}
