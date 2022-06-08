@@ -33,7 +33,6 @@ class ProfileView(DetailView):
     model = Profile
 
     def get(self, request, user_id, *args, **kwargs):
-        Profile.id_user = user_id
-        current_user = request.user
-        profile = get_object_or_404(Profile, user_id=Profile.id_user)
-        return render(request, self.template_name, {'profile': profile, 'current_user': current_user})
+        self.model.id_user = user_id
+        profile = get_object_or_404(self.model, user_id=self.model.id_user)
+        return render(request, self.template_name, {'profile': profile, 'current_user': request.user})
