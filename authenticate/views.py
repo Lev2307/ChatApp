@@ -3,8 +3,10 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView, DetailView
+from chat.models import Chat
 from .forms import RegisterForm
 from .models import Profile
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -28,9 +30,10 @@ class LogoutView(LogoutView):
     redirect_field_name = reverse_lazy("index")
     template_name = "index.html"
 
-class ProfileView(DetailView):
+class ProfileView(LoginRequiredMixin, DetailView):
     template_name = 'auth/profile.html'
     model = Profile
+    redirect_field_name = reverse_lazy('login')
 
     def get(self, request, user_id, *args, **kwargs):
         self.model.id_user = user_id

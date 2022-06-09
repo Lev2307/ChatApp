@@ -20,5 +20,6 @@ from chat.views import HomePageView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomePageView.as_view(), name="index"),
+    path('chat/', include('chat.urls')),
     path('auth/', include('authenticate.urls')),
 ]

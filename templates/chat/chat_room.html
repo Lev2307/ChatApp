@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Chat room{% endblock title %}
+
+{% block content %}
+    <h1>{{ chat.self_user.username }}</h1>
+    <h1>{{ chat.other_user.username }}</h1>
+
+{% endblock content %}

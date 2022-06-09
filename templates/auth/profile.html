@@ -7,7 +7,7 @@
     <div>
         <h1>{{ profile }}</h1>
         {% if current_user.username != profile.user.username %}
-            <a href="">Write a message</a>
+            <a href="/chat/chat_room/{{ room.id }}/">Message to</a>
         {% endif %}
     </div>
 {% endblock content %}

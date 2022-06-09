@@ -12,18 +12,18 @@
             {% endif %}
         </nav>
     </div>
+    {% if user.is_authenticated %}
     <div class="position-absolute bottom-0 end-0">
         {% if users.count > 0 %}
             <h1>All Users:</h1>
             {% for u in users %}
-                {% if user.id != None %}
-                    <div class="p-2 border mt-1">
-                        <a class="fs-3" href="auth/profile/{{ u.id }}/">{{ u.username }}</a>
-                    </div>
-                {% endif %}
+                <div class="p-2 border mt-1">
+                    <a class="fs-3" href="auth/profile/{{ u.id }}/">{{ u.username }}</a>
+                </div>
             {% endfor %}
         {% else %}
             <h3>There aren`t any users =/</h3>
         {% endif %}
     </div>
+    {% endif %}
 {% endblock content %}
